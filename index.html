@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product App</title>
+    <link rel="stylesheet" href="./style.css">
+     <script defer  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="./index.js"></script>
+</head>
+<body>
+    <div class="nav-bar">
+    <div id= "app">
+        <div class="product">
+            <div class="product-image">
+                <img v-bind:src="image" alt="">
+               
+            </div>
+            <div class="product-info">
+                <h1>{{product}}</h1>
+                <p>{{description}}</p>
+                <a :href="link" target="_blank">View more products like this here</a>
+            </div>
+        
+       
+        </div>
+    </div>
+    </div>
+   
+    
+</body>
+</html>
