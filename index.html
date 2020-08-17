@@ -13,13 +13,37 @@
     <div id= "app">
         <div class="product">
             <div class="product-image">
-                <img v-bind:src="image" alt="">
+
+                <!-- //product-image -->
+
+                <img v-bind:src="image" alt="VueM Socks">
                
             </div>
             <div class="product-info">
+
+                <!-- //some product-info -->
+
                 <h1>{{product}}</h1>
                 <p>{{description}}</p>
+
+                <!-- //conditional rendering(checks the stock)// -->
+                 
+                <!-- sale -->
+
+                 <p v-if="onSale">On Sale!</p>
+
+                 <!-- Stock -->
+
+                <p v-if="inventory>10">In stock</p>
+                <p v-else-if="inventory<=10 && inventory>0">Almost sold out</p>
+                <p v-else>Out of stock</p>
+
+               
+
+                <!-- //link  -->
+                
                 <a :href="link" target="_blank">View more products like this here</a>
+                
             </div>
         
        
