@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Product App</title>
+
     <link rel="stylesheet" href="./style.css" />
+
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script defer src="./index.js"></script>
-    <script defer src="./main.js"></script>
+    
   </head>
   <body>
     <div class="nav-bar">
@@ -19,6 +22,7 @@
             <img v-bind:src="image" alt="VueM Socks" />
           </div>
           <div class="product-info">
+
             <!-- //some product-info -->
 
             <h1>{{product}}</h1>
@@ -28,22 +32,37 @@
 
             <!-- Stock -->
 
-            <p v-if="inventory>10">In stock</p>
-            <p v-else-if="inventory<=10 && inventory>0">Almost sold out</p>
-            <p v-else>Out of stock</p>
+            <h2 v-if="inventory>10">In stock</h2>
+            <h2 v-else-if="inventory<=10 && inventory>0">Almost sold out</h2>
+            <h2 v-else>Out of stock</h2>
+
+            <!-- details -->
 
             <ul>
               <li v-for="d in details">{{d}}</li>
             </ul>
-            <div v-for="variant in variants">
-              <p>{{variant.variantColor}}</p>
+
+            <!-- Color -->
+
+            <div>
+                <h3>Colors Available:</h3>
+              <p v-for="v in variants" :key="v.variantId"> {{v.variantColor}}</p>
+            </div>
+
+            <!-- Sizes -->
+
+            <div >
+                <h3>Sizes:</h3>
+                <ul v-for="s in sizes">
+                    <li>{{s}}</li>
+                </ul>
             </div>
 
             <!-- sale -->
 
-            <p v-if="onSale">On Sale!</p>
+            <h3 v-if="onSale">On Sale!</h3>
 
-            <!-- //link  -->
+            <!-- link  -->
 
             <a :href="link" target="_blank"
               >View more products like this here</a
