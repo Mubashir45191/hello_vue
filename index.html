@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style.css" />
 
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script defer src="./index.js"></script>
     
   </head>
@@ -32,41 +33,47 @@
 
             <!-- Stock -->
 
-            <h2 v-if="inventory>10">In stock</h2>
-            <h2 v-else-if="inventory<=10 && inventory>0">Almost sold out</h2>
-            <h2 v-else>Out of stock</h2>
+            <h4 v-if="inventory>10">In stock</h4>
+            <h4 v-else-if="inventory<=10 && inventory>0">Almost sold out</h4>
+            <h4 v-else>Out of stock</h4>
 
             <!-- details -->
-
+ <h3>Details</h3>
             <ul>
               <li v-for="d in details">{{d}}</li>
             </ul>
 
-            <!-- Color -->
+           
 
-            <div>
-                <h3>Colors Available:</h3>
-              <p v-for="v in variants" :key="v.variantId"> {{v.variantColor}}</p>
+            <div v-for="v in variants" :key="v.variantId">
+                
+              <p @mouseover= "updateProduct(v.variantImage)" > {{v.variantColor}}</p>
             </div>
 
-            <!-- Sizes -->
+            <!-- Sizes
 
             <div >
                 <h3>Sizes:</h3>
                 <ul v-for="s in sizes">
                     <li>{{s}}</li>
                 </ul>
-            </div>
+            </div> -->  
 
             <!-- sale -->
+<!-- 
+            <h3 v-if="onSale">On Sale!</h3> -->
 
-            <h3 v-if="onSale">On Sale!</h3>
+            <button v-on:click="addToCart">Add to cart</button>
+            <button @click="removeFromCart" class="remCart">Remove from Cart</button>
+            <div class="cart">
+                <button>Cart {{'('+cart+')'}}</button>
+            </div>
 
             <!-- link  -->
 
-            <a :href="link" target="_blank"
+            <!-- <a :href="link" target="_blank"
               >View more products like this here</a
-            >
+            > 
           </div>
         </div>
       </div>
