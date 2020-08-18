@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product App</title>
-    <link rel="stylesheet" href="./style.css">
-     <script defer  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script defer src="./index.js"></script>
-</head>
-<body>
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
     <div class="nav-bar">
-    <div id= "app">
+      <div id="app">
         <div class="product">
-            <div class="product-image">
+          <div class="product-image">
+            <!-- //product-image -->
 
-                <!-- //product-image -->
+            <img v-bind:src="image" alt="VueM Socks" />
+          </div>
+          <div class="product-info">
+            <!-- //some product-info -->
 
-                <img v-bind:src="image" alt="VueM Socks">
-               
+            <h1>{{product}}</h1>
+            <p>{{description}}</p>
+
+            <!-- //conditional rendering(checks the stock)// -->
+
+            <!-- Stock -->
+
+            <p v-if="inventory>10">In stock</p>
+            <p v-else-if="inventory<=10 && inventory>0">Almost sold out</p>
+            <p v-else>Out of stock</p>
+
+            <ul>
+              <li v-for="d in details">{{d}}</li>
+            </ul>
+            <div v-for="variant in variants">
+              <p>{{variant.variantColor}}</p>
             </div>
-            <div class="product-info">
 
-                <!-- //some product-info -->
+            <!-- sale -->
 
-                <h1>{{product}}</h1>
-                <p>{{description}}</p>
+            <p v-if="onSale">On Sale!</p>
 
-                <!-- //conditional rendering(checks the stock)// -->
-                 
-                <!-- sale -->
+            <!-- //link  -->
 
-                 <p v-if="onSale">On Sale!</p>
-
-                 <!-- Stock -->
-
-                <p v-if="inventory>10">In stock</p>
-                <p v-else-if="inventory<=10 && inventory>0">Almost sold out</p>
-                <p v-else>Out of stock</p>
-
-               
-
-                <!-- //link  -->
-                
-                <a :href="link" target="_blank">View more products like this here</a>
-                
-            </div>
-        
-       
+            <a :href="link" target="_blank"
+              >View more products like this here</a
+            >
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-   
-    
-</body>
+  </body>
 </html>
