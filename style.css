@@ -91,3 +91,6 @@ textarea {
    position: relative;
    bottom:9px;
 }
+.cut{
+    text-decoration:line-through;
+}

@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Product App</title>
 
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css"/>
 
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script defer src="./index.js"></script>
-    
-  </head>
-  <body>
-    <div class="nav-bar">
-      <div id="app">
+
+
+</head>
+<body>
+<div class="nav-bar">
+    <div id="app">
         <div class="product">
-          <div class="product-image">
-            <!-- //product-image -->
+            <div class="product-image">
+                <!-- //product-image -->
 
-            <img v-bind:src="image" alt="VueM Socks" />
-          </div>
-          <div class="product-info">
-
-            <!-- //some product-info -->
-
-            <h1>{{product}}</h1>
-            <p>{{description}}</p>
-
-            <!-- //conditional rendering(checks the stock)// -->
-
-            <!-- Stock -->
-
-            <h4 v-if="inventory>10">In stock</h4>
-            <h4 v-else-if="inventory<=10 && inventory>0">Almost sold out</h4>
-            <h4 v-else>Out of stock</h4>
-
-            <!-- details -->
- <h3>Details</h3>
-            <ul>
-              <li v-for="d in details">{{d}}</li>
-            </ul>
-            
-            <div v-for="v in variants" :key="v.variantId" class="color-box">
-                
-              <p @mouseover= "updateProduct(v.variantImage)" > {{v.variantColor}}</p>
+                <img v-bind:src="image" alt="VueM Socks"/>
             </div>
+            <div class="product-info">
 
-           <button v-on:click="addToCart">Add to cart</button>
-            <button @click="removeFromCart" class="remCart">Remove from Cart</button>
-            <div class="cart">
-                <button>Cart {{'('+cart+')'}}</button>
+                <!-- //some product-info -->
+
+                <h1>{{product}}</h1>
+                <p>{{description}}</p>
+
+                <!-- //conditional rendering(checks the stock)// -->
+
+                <!-- Stock -->
+
+                <h4 v-if="inStock">In stock</h4>
+                <h4 v-else  ><span class="cut">In stock</span><br>Out of stock </h4>
+
+                <!-- details -->
+                <h3>Details</h3>
+                <ul>
+                    <li v-for="d in details">{{d}}</li>
+                </ul>
+
+                <div v-for="v in variants" :key="v.variantId" class="color-box"
+                     :style="{ backgroundColor: v.variantColor }" @mouseover="updateProduct(v.variantImage)">
+
+
+                </div>
+
+                <button v-on:click="addToCart"
+                :disabled="!inStock"
+                :class="{disabledButton:!inStock}">Add to cart</button>
+                <button @click="removeFromCart" class="remCart">Remove from Cart</button>
+                <div class="cart">
+                    <button>Cart {{'(' + cart + ')'}}</button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
