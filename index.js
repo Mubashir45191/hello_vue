@@ -1,41 +1,90 @@
-let app = new Vue({
-  el: "#app",
-  data: {
-    product: "Socks",
-    brand: 'Vue Mastery',
-    description:
-        " We offer awesome socks of amazing quality which you will surely love to wear and will become your favorite socks in  a moment of time.",
-    selectedVariant: 0,
-    onSale: true,
-    link:
-        "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks",
+Vue.component("product", {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  template: `
+  <div class="product">
+            <div class="product-image">
+                <!-- //product-image -->
 
-    details: ["80% cotton", "20% polyster", "Gender-neutral"],
-    variants: [
-      {
-        variantId: 2234,
-        variantColor: "green",
-        variantImage: "./images/vuestocks.png",
-        variantQuantity: 10
-      },
+                <img :src="image" alt="VueM Socks"/>
+            </div>
+            <div class="product-info">
 
-      {
-        variantId: 2235,
-        variantColor: "blue",
-        variantImage: "./images/vuesock.jpg",
-        variantQuantity: 0
-      },
-    ],
-    sizes: ["Small", "Medium", "Large", "Extra-Large"],
-    cart: 0,
+                <!-- //some product-info -->
+
+                <h1>{{title}}</h1>
+                <p>{{description}}</p>
+
+                <!-- //conditional rendering(checks the stock)// -->
+
+                <!-- Stock -->
+
+                <h4 v-if="inStock">In stock</h4>
+                <h4 v-else :class="{outOfStock:!inStock}">Out of stock </h4>
+                <p>Shipping : {{ shipping}}</p>
+
+                <h4>{{sale}}</h4>
+
+                <!-- details -->
+                <h3>Details</h3>
+
+                <ul>
+                    <li v-for="d in details">{{d}}</li>
+                </ul>
+
+                <div v-for="(v,i) in variants" :key="v.variantId" class="color-box"
+                     :style="{ backgroundColor: v.variantColor }" @mouseover="updateProduct(i)">
+
+
+                </div>
+
+                <button v-on:click="addToCart"
+                        :disabled="!inStock"
+                        :class="{disabledButton:!inStock}">Add to cart
+                </button>
+                <button @click="removeFromCart" :disabled="!inStock"  :class="{disabledButton:!inStock}" class="remCart">Remove from Cart</button>
+                <div class="cart">
+                    <button>Cart {{'(' + cart + ')'}}</button>
+                </div>
+            </div>
+        </div>
+    
+  `,
+  data() {
+    return {
+      product: "Socks",
+      brand: "Vue Mastery",
+      selectedVariant: 0,
+      details: ["80% cotton", "20% polyester", "Gender-neutral"],
+      variants: [
+        {
+          variantId: 2234,
+          variantColor: "green",
+          variantImage:
+            "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
+          variantQuantity: 10,
+        },
+        {
+          variantId: 2235,
+          variantColor: "blue",
+          variantImage:
+            "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
+          variantQuantity: 0,
+        },
+      ],
+      cart: 0,
+    };
   },
   methods: {
     addToCart: function () {
       this.cart += 1;
     },
-    updateProduct(index) {
+    updateProduct: function (index) {
       this.selectedVariant = index;
-      console.log(index)
     },
     removeFromCart() {
       this.cart -= 1;
@@ -43,7 +92,7 @@ let app = new Vue({
   },
   computed: {
     title() {
-      return this.brand + ' ' + this.product
+      return this.brand + " " + this.product;
     },
     image() {
       return this.variants[this.selectedVariant].variantImage;
@@ -51,15 +100,16 @@ let app = new Vue({
     inStock() {
       return this.variants[this.selectedVariant].variantQuantity;
     },
-    sale() {
-      if (this.onSale) {
-        return this.brand + ' ' + this.product + ' are on sale.';
-      } else {
-        return this.brand + ' ' + this.product + ' are  not on sale.';
-      }
-    },
-  }
-  });
-
+    shipping(){
+      if(this.)
+    }
+  },
+});
+let app = new Vue({
+  el: "#app",
+  data: {
+    premium: true,
+  },
+});
 
 //a vue instance
