@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Product App</title>
 
-    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="./style.css" />
 
     <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script defer src="./index.js"></script>
+  </head>
 
-
-</head>
-<body>
-<div class="nav-bar">
-    <div id="app">
-        <product :premium="premium"></product>
-
+  <body>
+    <div class="nav-bar">
+      <div id="app">
+     
+        <product :premium="premium" @add-to-cart="updateCart"></product>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

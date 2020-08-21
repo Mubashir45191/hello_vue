@@ -89,7 +89,7 @@ textarea {
 }
 .remCart{
    position: relative;
-   bottom:9px;
+   top:9px;
 }
 .cut{
     text-decoration:line-through;

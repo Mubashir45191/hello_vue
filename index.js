@@ -8,7 +8,7 @@ Vue.component("product", {
   template: `
   <div class="product">
             <div class="product-image">
-                <!-- //product-image -->
+                 <!-- //product-image -->
 
                 <img :src="image" alt="VueM Socks"/>
             </div>
@@ -41,13 +41,13 @@ Vue.component("product", {
 
 
                 </div>
-
+             <div class="cart">
                 <button v-on:click="addToCart"
                         :disabled="!inStock"
                         :class="{disabledButton:!inStock}">Add to cart
                 </button>
                 <button @click="removeFromCart" :disabled="!inStock"  :class="{disabledButton:!inStock}" class="remCart">Remove from Cart</button>
-                <div class="cart">
+                
                     <button>Cart {{'(' + cart + ')'}}</button>
                 </div>
             </div>
@@ -101,15 +101,22 @@ Vue.component("product", {
       return this.variants[this.selectedVariant].variantQuantity;
     },
     shipping(){
-      if(this.)
+      if(this.premium){
+        return "free";
+      }
+      else{
+        return "$2.99";
+      }
     }
   },
 });
+
 let app = new Vue({
   el: "#app",
   data: {
     premium: true,
-  },
+  }
 });
 
 //a vue instance
+  
